@@ -24,8 +24,8 @@ Welcome to `fish-x`, a Fish shell plugin that enhances your shell experience wit
                 src = pkgs.fetchFromGitHub {
                     owner = "y3owk1n";
                     repo = "fish-x";
-                    rev = "d5488105456c087f449168c6d4df1cc7a092067e";
-                    sha256 = "sha256-Oq0SsNdVrx7WpIuIdwpccQBK6JJuhLPS3Zj7J0nqA1s=";
+                    rev = "v1.2.0";
+                    sha256 = "generated-sha-256-values";
                 };
             }
         ];
