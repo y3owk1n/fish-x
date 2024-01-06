@@ -17,7 +17,7 @@ jobs:
       - uses: fish-actions/install-fish@v1.1.0
       - uses: fish-actions/fisher@v1
         with:
-          plugins: jorgebucaran/fishtape
+          plugins: jorgebucaran/fishtape ilancosman/clownfish $GITHUB_WORKSPACE
       - name: Run full test suite
         run: fishtape tests/*.fish
         shell: fish {0}
