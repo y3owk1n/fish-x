@@ -6,9 +6,9 @@
 
 Welcome to `fish-x`, a Fish shell plugin that enhances your shell experience with upgraded commands on top of regular commands.
 
-- `mkdirx`
-- `touchx`
-- `gclx`
+- `mkdirx` - Make a directory and cd into it.
+- `touchx` - Touch a new file and open in preferred editor.
+- `gclx` - Git clone a repository and cd into it.
 
 ## Installation
 
