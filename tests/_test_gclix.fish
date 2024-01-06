@@ -34,7 +34,7 @@ set git_folder_exist 0
 
 @test "current directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
 
-if test -d .git
+if test -d $pwd/.git
     set git_folder_exist 1
 end
 
@@ -50,7 +50,7 @@ set git_folder_exist 0
 
 @test "current directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
 
-if test -d .git
+if test -d $pwd/.git
     set git_folder_exist 1
 end
 
@@ -65,6 +65,10 @@ gclx --bare $valid_owner/$valid_repo
 set worktrees_folder_exist 0
 
 @test "current bare directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
+
+if test -d $pwd/worktrees
+    set worktrees_folder_exist 1
+end
 
 @test "worktrees folder exists" $worktrees_folder_exist -eq 1
 
