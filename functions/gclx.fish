@@ -8,25 +8,20 @@ function gclx --description="Git clone and cd"
     set -l is_bare_repo false
 
     echo "argv: $argv"
-    if test (count $argv) -gt 0
-        for i in (seq (count $argv))
-            if test "$argv[$i]" = --bare
-                set is_bare_repo true
-            else
-                # Check if there is another argument after the current one
-                if test (count $argv) -ge (math $i + 1)
-                    # Extract owner and repo names from the argument
-                    set owner (echo $argv[(math $i + 1)] | sed 's|^https://github.com/\(.*\)/\(.*\)\.git$|\1|')
-                    set repo (echo $argv[(math $i + 1)] | sed 's|^https://github.com/\(.*\)/\(.*\)\.git$|\2|')
 
-                    # If the argument is not a full URL, assume it's in owner/repo format
-                    if test "$owner" = "$argv[(math $i + 1)]"
-                        set owner (echo $argv[(math $i + 1)] | cut -d '/' -f 1)
-                        set repo (echo $argv[math $i + 1] | cut -d '/' -f 2)
-                    end
-                end
-            end
-        end
+    # Check for the --bare option
+    if test "$argv[1]" = --bare
+        set is_bare_repo true
+        set argv[1] # Remove the --bare option from the arguments
+    end
+
+    # Extract owner and repo names from the argument
+    set owner (echo $argv[1] | sed 's|^https://github.com/\(.*\)/\(.*\)\.git$|\1|')
+    set repo (echo $argv[1] | sed 's|^https://github.com/\(.*\)/\(.*\)\.git$|\2|')
+
+    if test "$owner" = "$argv[1]"
+        set owner (echo $argv[1] | cut -d '/' -f 1)
+        set repo (echo $argv[1] | cut -d '/' -f 2)
     end
 
     echo "owner: $owner"
