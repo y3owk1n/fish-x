@@ -12,7 +12,7 @@ function gclx --description="Git clone and cd"
     # Check for the --bare option
     if test "$argv[1]" = --bare
         set is_bare_repo true
-        set argv[1] argv[2] # Remove the --bare option from the arguments
+        set argv[1] $argv[2] # Remove the --bare option from the arguments
     end
 
     # Extract owner and repo names from the argument
