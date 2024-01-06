@@ -69,6 +69,12 @@ or
 gclx https://github.com/owner/repo.git
 ```
 
+We support `--bare` flag for worktree users.
+
+```fish
+gclx --bare owner/repo
+```
+
 ### 2. `mkdirx` - Create Directory and Change Directory
 
 The `mkdirx` function combines creating a directory and changing into it in a single command, streamlining your workflow.
