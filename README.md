@@ -4,11 +4,13 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/y3owk1n/fish-x/ci.yml)
 ![GitHub License](https://img.shields.io/github/license/y3owk1n/fish-x)
 
-Welcome to `fish-x`, a Fish shell plugin that enhances your shell experience with upgraded commands on top of regular commands.
+Welcome to `fish-x`, a Fish shell plugin that enhances your shell experience with upgraded commands on top of regular commands. Typically normal commands that ends with `x`.
 
 - `mkdirx` - Make a directory and cd into it.
 - `touchx` - Touch a new file and open in preferred editor.
 - `gclx` - Git clone a repository and cd into it.
+
+> This plugin has no intention to wrap around normal commands. E.g. wrap around `mkdir` to make it auto cd. There might be alot internal use cases for these common commands. Just type an `x` for a slight quality of improvement in life.
 
 ## Installation
 
@@ -73,7 +75,7 @@ or
 gclx https://github.com/owner/repo.git
 ```
 
-We support `--bare` flag for worktree users.
+We support `--bare` flag for worktree users like me.
 
 ```fish
 gclx --bare owner/repo
@@ -86,7 +88,7 @@ The `mkdirx` function combines creating a directory and changing into it in a si
 #### Usage
 
 ```fish
-mkdirx folder
+mkdirx [folder-name]
 ```
 
 ### 3. `touchx` - Touch and Open in Editor
@@ -96,7 +98,7 @@ The `touchx` function creates or updates a file and opens it in your preferred e
 #### Usage
 
 ```fish
-touchx <file>
+touchx [file-name]
 ```
 
 ## Configuration
