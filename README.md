@@ -1,5 +1,8 @@
 # Extra common utilities for Fish 🐟
 
+[![latest release badge][]](https://github.com/y3owk1n/fish-x/releases)
+[![build status badge][]](https://github.com/y3owk1n/fish-x/actions)
+
 Welcome to `fish-x`, a Fish shell plugin that enhances your shell experience with upgraded commands on top of regular commands.
 
 - `mkdirx`
