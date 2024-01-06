@@ -1,6 +1,6 @@
 function gclx --description="Git clone and cd"
     # Check if an argument is provided
-    if test (count $argv) -le 1
+    if test (count $argv) -eq 0
         echo "Usage: gclx owner/repo or gclx https://github.com/owner/repo.git"
         return 1
     end
