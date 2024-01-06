@@ -16,12 +16,6 @@ jobs:
       - uses: fish-actions/fisher@v1
         with:
           plugins: jorgebucaran/fishtape ilancosman/clownfish $GITHUB_WORKSPACE
-      - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
-        # Homebrew is only missing from ubuntu images per https://github.com/actions/runner-images/issues/6283
-        if: matrix.os == 'ubuntu-latest'
-      - name: Install neovim
-        run: brew install neovim
       - name: Run full test suite
         run: fishtape tests/*.fish
         shell: fish {0}

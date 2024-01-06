@@ -9,14 +9,14 @@ function cleanup_files
     end
 end
 
-# Mock nvim
-function nvim
-    echo "nvim executed"
+# Mock vim
+function vim
+    echo "vim executed"
     return 1
 end
 
 # Mock the EDITOR variable
-set -U EDITOR nvim
+set -U EDITOR vim
 
 # Test touchx displays usage message when no arguments provided
 cd $temp_dir
@@ -36,7 +36,7 @@ touchx file1.txt
 @test "file is created" -e file1.txt
 
 # Check if the editor function run properly
-@test "opened with editor message" (touchx file1.txt) = "nvim executed"
+@test "opened with editor message" (touchx file1.txt) = "vim executed"
 
 # Clean up
 cd $temp_dir
