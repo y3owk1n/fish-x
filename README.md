@@ -1,10 +1,14 @@
 # Extra common utilities for Fish 🐟
 
-Welcome to `fish-x`, a Fish shell plugin that enhances your shell experience with three essential functions: gclx, mkdirx, and touchx.
+Welcome to `fish-x`, a Fish shell plugin that enhances your shell experience with upgraded commands on top of regular commands.
+
+- `mkdirx`
+- `touchx`
+- `gclx`
 
 ## Installation
 
-### Using Nix's Home Manager (I'm using this)
+### Using Nix's Home Manager (Recommended)
 
 ```fish
 {
@@ -49,9 +53,9 @@ source /path/to/touchx.fish
 
 ## Functions
 
-### 1. `gclx` - Git Clone and CD
+### 1. `gclx` - Git Clone and Change Directory
 
-The `gclx` function simplifies the process of cloning a Git repository and navigating into it in one swift command.
+The `gclx` function simplifies the process of cloning a Git repository and navigating into it with a single command.
 
 #### Usage
 
@@ -65,7 +69,7 @@ or
 gclx https://github.com/owner/repo.git
 ```
 
-### 2. `mkdirx` - Mkdir and CD
+### 2. `mkdirx` - Create Directory and Change Directory
 
 The `mkdirx` function combines creating a directory and changing into it in a single command, streamlining your workflow.
 
@@ -99,7 +103,7 @@ If you encounter any issues or errors, please refer to the ~~troubleshooting sec
 
 ## Contributions
 
-Feel free to contribute by opening issues, suggesting enhancements, or submitting pull requests. We welcome your feedback and ideas to make `fish-x` even more powerful!
+Feel free to contribute by opening issues, suggesting enhancements, or submitting pull requests. We value your feedback and ideas to enhance the capabilities of `fish-x` further!
 
 ## License
 
