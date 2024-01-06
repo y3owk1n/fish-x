@@ -30,10 +30,15 @@ cleanup_repositories
 
 # Test gclx with a valid repository URL
 gclx $valid_url
+set git_folder_exist 0
 
 @test "current directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
 
-@test ".git folder exists" -d "$temp_dir/$valid_repo/.git"
+if test -d .git
+    set git_folder_exist 1
+end
+
+@test ".git folder exists" $git_folder_exist -eq 1
 
 # Clean up
 cd $temp_dir
@@ -41,10 +46,15 @@ cleanup_repositories
 
 # Test gclx with owner/repo format
 gclx $valid_owner/$valid_repo
+set git_folder_exist 0
 
 @test "current directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
 
-@test ".git folder exists" (test -d .git) -eq 1
+if test -d .git
+    set git_folder_exist 1
+end
+
+@test ".git folder exists" $git_folder_exist -eq 1
 
 # Clean up
 cd $temp_dir
@@ -52,10 +62,11 @@ cleanup_repositories
 
 # Test gclx clones a bare repository
 gclx --bare $valid_owner/$valid_repo
+set worktrees_folder_exist 0
 
 @test "current bare directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
 
-@test "worktrees folder exists" (test -d worktrees) -eq 1
+@test "worktrees folder exists" $worktrees_folder_exist -eq 1
 
 # Clean up
 cd $temp_dir
