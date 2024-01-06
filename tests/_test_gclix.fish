@@ -33,6 +33,8 @@ gclx $valid_url
 
 @test "current directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
 
+@test ".git folder exists" -d "$temp_dir/$valid_repo/.git"
+
 # Clean up
 cd $temp_dir
 cleanup_repositories
@@ -41,6 +43,19 @@ cleanup_repositories
 gclx $valid_owner/$valid_repo
 
 @test "current directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
+
+@test ".git folder exists" -d "$temp_dir/$valid_repo/.git"
+
+# Clean up
+cd $temp_dir
+cleanup_repositories
+
+# Test gclx clones a bare repository
+gclx --bare $valid_owner/$valid_repo
+
+@test "current bare directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
+
+@test "worktrees folder exists" -d "$temp_dir/$valid_repo/worktrees/"
 
 # Clean up
 cd $temp_dir
