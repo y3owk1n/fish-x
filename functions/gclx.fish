@@ -5,34 +5,34 @@ function gclx --description="Git clone and cd"
         return 1
     end
 
-    set -l is_bare_repo false
+    set is_bare_repo false
 
-    if test (count $argv) -gt 0
-        for i in (seq (count $argv))
-            if test "$argv[$i]" = --bare
-                set is_bare_repo true
-            else
-                # Check if there is another argument after the current one
-                if test (count $argv) -ge (math $i + 1)
-                    set path (echo $argv[(math $i + 1)] | sed 's:/*$::')
-
-                    # Extract owner and repo names from the argument
-                    set owner (echo $argv[(math $i + 1)] | sed 's|^https://github.com/\(.*\)/\(.*\)\.git$|\1|')
-                    set repo (echo $argv[(math $i + 1)] | sed 's|^https://github.com/\(.*\)/\(.*\)\.git$|\2|')
-
-                    # If the argument is not a full URL, assume it's in owner/repo format
-                    if test "$owner" = "$argv[(math $i + 1)]"
-                        set owner (echo $argv[(math $i + 1)] | cut -d '/' -f 1)
-                        set repo (echo $argv[math $i + 1] | cut -d '/' -f 2)
-                    end
-                end
-            end
-        end
+    # Check for the --bare option
+    if test "$argv[1]" = --bare
+        set is_bare_repo true
+        set argv[1] # Remove the --bare option from the arguments
     end
 
+    # Extract owner and repo names from the argument
+    set url_or_owner_repo $argv[1]
+    set owner
+    set repo
+
+    if string match --regex --start '^https://github.com/(.*)\.git$' $url_or_owner_repo
+        # Extract owner and repo from URL
+        set owner $match[1]
+        set repo (basename $url_or_owner_repo .git)
+        elif string match --regex --start '^([^/]+)/([^/]+)$' $url_or_owner_repo
+        # Extract owner and repo from owner/repo format
+        set owner $match[1]
+        set repo $match[2]
+    else
+        echo "Error: Invalid input format. Please use owner/repo or https://github.com/owner/repo.git"
+        return 1
+    end
 
     # Perform git clone
-    if test $is_bare_repo
+    if $is_bare_repo
         git clone --bare "https://github.com/$owner/$repo.git" $repo
     else
         git clone "https://github.com/$owner/$repo.git" $repo
