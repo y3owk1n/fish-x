@@ -44,7 +44,7 @@ gclx $valid_owner/$valid_repo
 
 @test "current directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
 
-@test ".git folder exists" -d "$temp_dir/$valid_repo/.git"
+@test ".git folder exists" (test -d .git) -eq 1
 
 # Clean up
 cd $temp_dir
@@ -55,7 +55,7 @@ gclx --bare $valid_owner/$valid_repo
 
 @test "current bare directory is the repository directory" (pwd) = "$temp_dir/$valid_repo"
 
-@test "worktrees folder exists" -d "$temp_dir/$valid_repo/worktrees/"
+@test "worktrees folder exists" (test -d worktrees) -eq 1
 
 # Clean up
 cd $temp_dir
