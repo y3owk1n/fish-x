@@ -1,7 +1,8 @@
 # Extra common utilities for Fish 🐟
 
-[![latest release badge][]](https://github.com/y3owk1n/fish-x/releases)
-[![build status badge][]](https://github.com/y3owk1n/fish-x/actions)
+![GitHub Release](https://img.shields.io/github/v/release/y3owk1n/fish-x)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/y3owk1n/fish-x/ci.yml)
+![GitHub License](https://img.shields.io/github/license/y3owk1n/fish-x)
 
 Welcome to `fish-x`, a Fish shell plugin that enhances your shell experience with upgraded commands on top of regular commands.
 
