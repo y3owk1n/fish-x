@@ -29,7 +29,7 @@ function gclx --description="Git clone and cd"
     echo "is_bare_repo: $is_bare_repo"
 
     # Perform git clone
-    if test $is_bare_repo
+    if test $is_bare_repo -eq true
         git clone --bare "https://github.com/$owner/$repo.git" $repo
     else
         git clone "https://github.com/$owner/$repo.git" $repo
