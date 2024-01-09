@@ -7,8 +7,6 @@ function gclx --description="Git clone and cd"
 
     set -l is_bare_repo false
 
-    echo "argv: $argv"
-
     # Check for the --bare option
     if test "$argv[1]" = --bare
         set is_bare_repo true
@@ -23,10 +21,6 @@ function gclx --description="Git clone and cd"
         set owner (echo $argv[1] | cut -d '/' -f 1)
         set repo (echo $argv[1] | cut -d '/' -f 2)
     end
-
-    echo "owner: $owner"
-    echo "repo: $repo"
-    echo "is_bare_repo: $is_bare_repo"
 
     # Perform git clone
     if test $is_bare_repo = true
