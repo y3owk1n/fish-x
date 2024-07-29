@@ -22,11 +22,21 @@ function gclx --description="Git clone and cd"
         set repo (echo $argv[1] | cut -d '/' -f 2)
     end
 
-    # Perform git clone
-    if test $is_bare_repo = true
-        git clone --bare "https://github.com/$owner/$repo.git" $repo
+    # Check if GitHub CLI is available
+    if command -v gh >/dev/null 2>&1
+        # Use gh repo clone
+        if test $is_bare_repo = true
+            gh repo clone "$owner/$repo" -- --bare
+        else
+            gh repo clone "$owner/$repo"
+        end
     else
-        git clone "https://github.com/$owner/$repo.git" $repo
+        # Fallback to git clone
+        if test $is_bare_repo = true
+            git clone --bare "https://github.com/$owner/$repo.git" $repo
+        else
+            git clone "https://github.com/$owner/$repo.git" $repo
+        end
     end
 
     # Check if git clone was successful
