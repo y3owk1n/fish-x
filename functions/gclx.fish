@@ -22,15 +22,38 @@ function gclx --description="Git clone and cd"
         set repo (echo $argv[1] | cut -d '/' -f 2)
     end
 
-    # Perform git clone
-    if test $is_bare_repo = true
-        git clone --bare "https://github.com/$owner/$repo.git" $repo
-    else
-        git clone "https://github.com/$owner/$repo.git" $repo
+    set clone_successful false
+
+    # Try gh repo clone first if available
+    if command -v gh >/dev/null 2>&1
+        if test $is_bare_repo = true
+            gh repo clone "$owner/$repo" -- --bare
+        else
+            gh repo clone "$owner/$repo"
+        end
+
+        if test $status -eq 0
+            set clone_successful true
+        else
+            echo "gh repo clone failed, falling back to git clone..."
+        end
     end
 
-    # Check if git clone was successful
-    if test $status -eq 0
+    # If gh repo clone failed or gh is not available, use git clone
+    if test $clone_successful = false
+        if test $is_bare_repo = true
+            git clone --bare "https://github.com/$owner/$repo.git" $repo
+        else
+            git clone "https://github.com/$owner/$repo.git" $repo
+        end
+
+        if test $status -eq 0
+            set clone_successful true
+        end
+    end
+
+    # Check if clone was successful
+    if test $clone_successful = true
         # Change to the newly cloned directory
         cd $repo
     else
